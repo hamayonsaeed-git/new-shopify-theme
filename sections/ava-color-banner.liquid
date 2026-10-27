@@ -1,0 +1,665 @@
+{% style %}
+  #AvaBanner-{{ section.id }} {
+    display: block;
+    padding-top: var(--pt-desktop);
+    padding-bottom: var(--pb-desktop);
+  }
+
+  #AvaBanner-{{ section.id }} .page-width {
+    max-width: 100%;
+    padding-left: 65px;
+    padding-right: 65px;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-stage {
+    position: relative;
+    isolation: isolate;
+    background: #f7e9cf;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-slide {
+    position: absolute;
+    inset: 0;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-slide[hidden] {
+    display: none;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-banner-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    min-height: 650px;
+    padding: 28px 130px 28px 0;
+    pointer-events: ;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-offer {
+    position: relative;
+    width: 440px;
+    max-width: 100%;
+    padding: 52px 45px 56px 36px;
+    pointer-events: auto;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-shape {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-offer:has(.ava-shape) {
+    isolation: isolate;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-offer:not(:has(.ava-shape)) {
+    background: #dc5b54;
+    border-radius: 24% 30% 38% 15% / 12% 25% 35% 12%;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-heading {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 80px;
+    line-height: 70px;
+    letter-spacing: -1.35px;
+    color: #ffffff;
+    margin: 0 0 28px;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-heading span {
+    display: block;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-description {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: 0;
+    color: #ffffff;
+  }
+
+  #AvaBanner-{{ section.id }} p {
+    margin: 0;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-description p + p {
+    margin-top: 20px;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-delivery {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 32px;
+    color: #f4c33f;
+    margin: 24px 0 20px;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    padding: 16px 30px;
+    border-radius: 50px;
+    background: #f4c33f;
+    color: #2b1a1e;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 1;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-tabs {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-tab {
+    display: block;
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--swatch);
+    cursor: pointer;
+    box-shadow: 0 5px 8px #0002;
+  }
+
+  #AvaBanner-{{ section.id }} .ava-tab[aria-selected='true'] {
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
+  }
+
+  #AvaBanner-{{ section.id }} :focus-visible {
+    outline: 3px solid #2b1a1e;
+    outline-offset: 5px;
+  }
+
+  @media (max-width: 1027px) {
+    #AvaBanner-{{ section.id }} .page-width {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-content {
+      min-height: 600px;
+      padding-right: 95px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-offer {
+      width: 380px;
+      padding: 42px 32px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-heading {
+      font-size: 64px;
+      line-height: 59px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-tab {
+      width: 64px;
+      height: 64px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-delivery {
+      font-size: 20px;
+      line-height: 27px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #AvaBanner-{{ section.id }} {
+      padding-top: var(--pt-mobile);
+      padding-bottom: var(--pb-mobile);
+    }
+
+    #AvaBanner-{{ section.id }} .page-width {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-content {
+      min-height: 760px;
+      padding: 300px 0 100px;
+      align-items: flex-end;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-banner-image {
+      object-position: 65% center;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-offer {
+      width: 340px;
+      padding: 32px 30px 38px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-heading {
+      font-size: 54px;
+      line-height: 50px;
+      margin-bottom: 20px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-description {
+      font-size: 16px;
+      line-height: 22px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-delivery {
+      font-size: 17px;
+      line-height: 24px;
+      margin: 18px 0;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-link {
+      font-size: 17px;
+      min-height: 48px;
+      padding: 14px 22px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-tabs {
+      left: 0;
+      right: 0;
+      top: auto;
+      bottom: 24px;
+      transform: none;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-tab {
+      width: 38px;
+      height: 38px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    #AvaBanner-{{ section.id }} .page-width {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-heading {
+      font-size: 46px;
+      line-height: 44px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-offer {
+      padding: 30px 24px;
+    }
+
+    #AvaBanner-{{ section.id }} .ava-tab {
+      width: 32px;
+      height: 32px;
+    }
+  }
+{% endstyle %}
+
+<ava-color-banner
+  id="AvaBanner-{{ section.id }}"
+  style="
+    --pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+  "
+>
+  <div class="ava-stage">
+    {% for block in section.blocks %}
+      <div
+        class="ava-slide"
+        id="AvaPanel-{{ section.id }}-{{ block.id }}"
+        role="tabpanel"
+        aria-labelledby="AvaTab-{{ section.id }}-{{ block.id }}"
+        tabindex="0"
+        data-block-id="{{ block.id }}"
+        {% unless forloop.first %}
+          hidden
+        {% endunless %}
+        {{ block.shopify_attributes }}
+      >
+        {% if block.settings.banner != blank %}
+          {% liquid
+            assign image_loading = 'lazy'
+            if forloop.first
+              assign image_loading = 'eager'
+            endif
+          %}
+
+          {{
+            block.settings.banner
+            | image_url: width: 2400
+            | image_tag:
+              class: 'ava-banner-image',
+              widths: '600, 900, 1200, 1600, 2000, 2400',
+              sizes: '100vw',
+              loading: image_loading
+          }}
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <div class="page-width">
+      <div class="ava-content">
+        <div class="ava-offer">
+          {% if section.settings.offer_shape != blank %}
+            {{
+              section.settings.offer_shape
+              | image_url: width: 900
+              | image_tag:
+                class: 'ava-shape',
+                alt: '',
+                loading: 'lazy'
+            }}
+          {% endif %}
+
+          <h2 class="ava-heading">
+            <span>{{ section.settings.offer | escape }}</span>
+            <span>{{ section.settings.saving | escape }}</span>
+          </h2>
+
+          {% if section.settings.description != blank %}
+            <div class="ava-description">
+              {{ section.settings.description }}
+            </div>
+          {% endif %}
+
+          {% if section.settings.delivery != blank %}
+            <div class="ava-delivery">
+              {{ section.settings.delivery | escape }}
+            </div>
+          {% endif %}
+
+          {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+            <a
+              class="ava-link"
+              href="{{ section.settings.button_link }}"
+            >
+              {{ section.settings.button_label | escape }}
+            </a>
+          {% endif %}
+        </div>
+
+        <div
+          class="ava-tabs"
+          role="tablist"
+          aria-label="{{ section.settings.tab_label | escape }}"
+          aria-orientation="vertical"
+        >
+          {% for block in section.blocks %}
+            <button
+              class="ava-tab"
+              id="AvaTab-{{ section.id }}-{{ block.id }}"
+              type="button"
+              role="tab"
+              aria-label="{{ block.settings.title | escape }}"
+              aria-controls="AvaPanel-{{ section.id }}-{{ block.id }}"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+              tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+              style="--swatch: {{ block.settings.color }};"
+            ></button>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</ava-color-banner>
+
+{% javascript %}
+  if (!customElements.get('ava-color-banner')) {
+    customElements.define(
+      'ava-color-banner',
+      class extends HTMLElement {
+        connectedCallback() {
+          if (this.controller) this.controller.abort();
+
+          this.controller = new AbortController();
+
+          const options = {
+            signal: this.controller.signal
+          };
+
+          this.tabs = Array.from(
+            this.querySelectorAll('[role="tab"]')
+          );
+
+          this.panels = Array.from(
+            this.querySelectorAll('[role="tabpanel"]')
+          );
+
+          this.tabs.forEach((tab, index) => {
+            tab.addEventListener(
+              'click',
+              () => this.activate(index),
+              options
+            );
+
+            tab.addEventListener(
+              'keydown',
+              event => {
+                let next = index;
+
+                if (['ArrowRight', 'ArrowDown'].includes(event.key)) {
+                  next = (index + 1) % this.tabs.length;
+                } else if (['ArrowLeft', 'ArrowUp'].includes(event.key)) {
+                  next =
+                    (index - 1 + this.tabs.length) % this.tabs.length;
+                } else if (event.key === 'Home') {
+                  next = 0;
+                } else if (event.key === 'End') {
+                  next = this.tabs.length - 1;
+                } else {
+                  return;
+                }
+
+                event.preventDefault();
+                this.activate(next);
+                this.tabs[next].focus();
+              },
+              options
+            );
+          });
+
+          document.addEventListener(
+            'shopify:block:select',
+            event => {
+              const index = this.panels.findIndex(
+                panel => panel.dataset.blockId === event.detail.blockId
+              );
+
+              if (index !== -1) this.activate(index);
+            },
+            options
+          );
+
+          const layout = matchMedia('(max-width: 768px)');
+
+          const updateOrientation = () => {
+            this.querySelector('[role="tablist"]').setAttribute(
+              'aria-orientation',
+              layout.matches ? 'horizontal' : 'vertical'
+            );
+          };
+
+          updateOrientation();
+
+          layout.addEventListener(
+            'change',
+            updateOrientation,
+            options
+          );
+        }
+
+        activate(index) {
+          this.tabs.forEach((tab, position) => {
+            const selected = position === index;
+
+            tab.setAttribute('aria-selected', String(selected));
+            tab.tabIndex = selected ? 0 : -1;
+            this.panels[position].hidden = !selected;
+          });
+        }
+
+        disconnectedCallback() {
+          this.controller?.abort();
+        }
+      }
+    );
+  }
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Ava color banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "offer_shape",
+      "label": "Offer shape image"
+    },
+    {
+      "type": "text",
+      "id": "offer",
+      "label": "Offer",
+      "default": "2 FOR £130"
+    },
+    {
+      "type": "text",
+      "id": "saving",
+      "label": "Saving",
+      "default": "Save £8"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Sign up and enjoy our welcome offer of 10% off your first full price panty.</p><p>“Offer excludes bundles and cannot be combined with other promotions”</p>"
+    },
+    {
+      "type": "text",
+      "id": "delivery",
+      "label": "Delivery text",
+      "default": "FREE UK DELIVERY OVER £100"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Four Ava After"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "tab_label",
+      "label": "Color selector label",
+      "default": "Choose a color"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding top desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding bottom desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "color_banner",
+      "name": "Color banner",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Color name",
+          "default": "Coral"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Button color",
+          "default": "#E75B52"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner",
+          "label": "Banner image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Ava color banner",
+      "blocks": [
+        {
+          "type": "color_banner",
+          "settings": {
+            "title": "Coral",
+            "color": "#E75B52"
+          }
+        },
+        {
+          "type": "color_banner",
+          "settings": {
+            "title": "Berry",
+            "color": "#CF304B"
+          }
+        },
+        {
+          "type": "color_banner",
+          "settings": {
+            "title": "Orange",
+            "color": "#F68B29"
+          }
+        },
+        {
+          "type": "color_banner",
+          "settings": {
+            "title": "Yellow",
+            "color": "#F4C33F"
+          }
+        },
+        {
+          "type": "color_banner",
+          "settings": {
+            "title": "Green",
+            "color": "#4B9D7B"
+          }
+        },
+        {
+          "type": "color_banner",
+          "settings": {
+            "title": "Pink",
+            "color": "#F3A4AF"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

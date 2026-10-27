@@ -1,0 +1,171 @@
+<div class="pairs-with-section">
+  <div class="mekhala-page-width">
+
+    {% if section.settings.label != blank %}
+      <p class="pairs-label">{{ section.settings.label }}</p>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h2 class="pairs-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <p class="pairs-description">
+        {{ section.settings.description }}
+      </p>
+    {% endif %}
+
+    <div class="pairs-tags">
+      {% for block in section.blocks %}
+        <div class="pair-tag" {{ block.shopify_attributes }}>
+
+          {% if block.settings.icon != blank %}
+            <img
+              src="{{ block.settings.icon | image_url: width: 40 }}"
+              alt="{{ block.settings.title }}"
+              width="20"
+              height="20"
+            >
+          {% endif %}
+
+          <span>{{ block.settings.title }}</span>
+
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+<style>
+
+.pairs-with-section {
+  background: #f5f5f2;
+  padding: 60px 20px;
+}
+
+.mekhala-page-width {
+  max-width: 1116px;
+  margin: 0 auto;
+}
+
+.pairs-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .7px;
+  color: #ed1a3b;
+  margin-bottom: 10px;
+}
+
+.pairs-heading {
+  font-size: 48px;
+  font-weight: 700;
+  color: #231f20;
+  margin: 0 0 24px;
+  line-height: 1.1;
+}
+
+.pairs-description {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #5a5a5a;
+  margin-bottom: 32px;
+  max-width: 850px;
+}
+
+.pairs-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pair-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  background: #fff;
+  border: 1px solid #7f7f7f;
+  border-radius: 999px;
+
+  padding: 10px 18px;
+
+  font-size: 18px;
+  color: #231f20;
+  line-height: 1;
+
+  transition: all .2s ease;
+}
+
+.pair-tag img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.pair-tag:hover {
+  transform: translateY(-2px);
+}
+
+@media screen and (max-width: 768px) {
+
+  .pairs-heading {
+    font-size: 32px;
+  }
+
+  .pairs-description {
+    font-size: 15px;
+  }
+
+  .pair-tag {
+    font-size: 15px;
+    padding: 8px 14px;
+  }
+}
+</style>
+{
+  "name": "Pairs Well With",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "COMPLETE YOUR DISH"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Pairs well with"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pairs Well With"
+    }
+  ]
+}

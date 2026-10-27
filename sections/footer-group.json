@@ -1,0 +1,98 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "mekha_footer_ndHXqe": {
+      "type": "mekha-footer",
+      "blocks": {
+        "menu_column_agLrAp": {
+          "type": "menu_column",
+          "settings": {
+            "menu": "footer",
+            "instagram_link": "",
+            "facebook_link": ""
+          }
+        },
+        "menu_column_pRfpAK": {
+          "type": "menu_column",
+          "settings": {
+            "menu": "colum-2",
+            "instagram_link": "",
+            "facebook_link": ""
+          }
+        },
+        "menu_column_BNWJde": {
+          "type": "menu_column",
+          "settings": {
+            "menu": "colum-3",
+            "instagram_link": "",
+            "facebook_link": ""
+          }
+        },
+        "menu_column_9W4NHN": {
+          "type": "menu_column",
+          "settings": {
+            "menu": "colum-4",
+            "instagram_link": "",
+            "facebook_link": "",
+            "instagram_icon": "shopify://shop_images/vecteezy_instagram-logo-png-instagram-icon-transparent_18930473.png",
+            "facebook_icon": "shopify://shop_images/vecteezy_facebook-logo-png-facebook-icon-transparent-png_18930481.png",
+            "badge_image": "shopify://shop_images/c68510d57e409fe7a1581967efca8781.Made-With-Passion-logo.webp"
+          }
+        }
+      },
+      "block_order": [
+        "menu_column_agLrAp",
+        "menu_column_pRfpAK",
+        "menu_column_BNWJde",
+        "menu_column_9W4NHN"
+      ],
+      "name": "Custom Footer",
+      "settings": {
+        "logo": "shopify://shop_images/c3d48ca482c91fd090d217a53975e7f7.Mekhala-Logo-Small.webp",
+        "footer_bg": "shopify://shop_images/3a641d411e036af3defa17db0b876676.bg-footer.webp",
+        "image": "shopify://shop_images/c68510d57e409fe7a1581967efca8781.Made-With-Passion-logo.webp"
+      }
+    },
+    "below_footer_WXkNFY": {
+      "type": "below-footer",
+      "name": "Footer Copyright",
+      "settings": {
+        "company_name": "Mekhala Pte Ltd",
+        "bg_color": "#0d0d0d",
+        "padding_vertical": 20
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "newsletter_enable": true,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "mekha_footer_ndHXqe",
+    "below_footer_WXkNFY",
+    "footer"
+  ]
+}

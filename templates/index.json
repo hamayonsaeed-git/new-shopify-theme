@@ -1,0 +1,135 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "simple_image_banner_9gijQa": {
+      "type": "simple-image-banner",
+      "name": "Simple image banner",
+      "blocks": {
+        "quantity": {
+          "type": "quantity",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "quantity",
+        "buy_buttons"
+      ],
+      "settings": {
+        "product": "short-sleeve-t-shirt",
+        "full_width": true
+      }
+    },
+    "mekhala_home_block_6eLPrC": {
+      "type": "mekhala-home-block",
+      "blocks": {
+        "use_case_ERaVeG": {
+          "type": "use_case",
+          "settings": {
+            "image": "shopify://shop_images/1f372.svg",
+            "title": "Classic Thai Curry",
+            "body": "Sauté with coconut cream, add protein and veg, simmer with coconut milk. Ready in 20 minutes."
+          }
+        },
+        "use_case_ARA4Gx": {
+          "type": "use_case",
+          "settings": {
+            "image": "shopify://shop_images/1f35c.svg",
+            "title": "Marinade",
+            "body": "Mix 2 tbsp paste with olive oil and a squeeze of lime. Marinate chicken, tofu, or fish for 30 mins before grilling or roasting."
+          }
+        },
+        "use_case_h7UjXi": {
+          "type": "use_case",
+          "settings": {
+            "image": "shopify://shop_images/1f35c.svg",
+            "title": "Noodle Soup",
+            "body": "Stir 1 tbsp into hot vegetable broth with rice noodles, spinach, and a soft-boiled egg for an instant Thai-inspired soup."
+          }
+        },
+        "use_case_myP3KH": {
+          "type": "use_case",
+          "settings": {
+            "image": "shopify://shop_images/1f357.svg",
+            "title": "Salad Dressing",
+            "body": "Whisk ½ tbsp with lime juice, sesame oil, and a touch of coconut cream for a bold Asian-inspired salad dressing."
+          }
+        },
+        "use_case_7DP9CB": {
+          "type": "use_case",
+          "settings": {
+            "image": "shopify://shop_images/1f372.svg",
+            "title": "Roasted Veg",
+            "body": "Toss cauliflower, sweet potato, or chickpeas in paste mixed with coconut oil. Roast at 200°C for a deeply flavoured side dish."
+          }
+        },
+        "use_case_WRCPMR": {
+          "type": "use_case",
+          "settings": {
+            "image": "shopify://shop_images/1f35c.svg",
+            "title": "Stir-Fry",
+            "body": "Add to a hot wok with oil and your choice of protein and vegetables. A 15-minute weeknight stir-fry with restaurant depth."
+          }
+        }
+      },
+      "block_order": [
+        "use_case_ERaVeG",
+        "use_case_ARA4Gx",
+        "use_case_h7UjXi",
+        "use_case_myP3KH",
+        "use_case_7DP9CB",
+        "use_case_WRCPMR"
+      ],
+      "name": "Versatility Cards",
+      "settings": {
+        "label": "VERSATILITY",
+        "heading": "Not just for curry",
+        "subheading": "Mekhala Red Curry Paste is a flavour catalyst. Here are six ways to use it beyond the classic curry — each one weeknight-easy."
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "simple_image_banner_9gijQa",
+    "mekhala_home_block_6eLPrC",
+    "featured_collection"
+  ]
+}

@@ -1,0 +1,867 @@
+{% comment %}
+  On Sale Products
+  - Product Type filter
+  - Brand filter
+  - Drive Size filter
+  - Availability filter
+  - Price filter
+  - Sorting
+  - Responsive product grid
+{% endcomment %}
+
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .on-sale-section {
+    padding-top: var(--on-sale-pt-desktop);
+    padding-bottom: var(--on-sale-pb-desktop);
+  }
+
+  .on-sale-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .on-sale-header {
+    margin-bottom: 35px;
+  }
+
+  .on-sale-heading {
+    margin: 0 0 10px;
+    font-size: 40px;
+    line-height: 1.2;
+  }
+
+  .on-sale-intro {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+  }
+
+  .on-sale-content {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 35px;
+  }
+
+  /* FILTERS */
+
+  .on-sale-filters {
+    width: 100%;
+  }
+
+  .on-sale-filter {
+    border-bottom: 1px solid #ddd;
+    padding: 0 0 18px;
+    margin-bottom: 18px;
+  }
+
+  .on-sale-filter-title {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .on-sale-filter-title span:last-child {
+    font-size: 18px;
+  }
+
+  .on-sale-filter-content {
+    margin-top: 15px;
+  }
+
+  .on-sale-filter-option {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .on-sale-filter-option input {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .on-sale-filter-option label {
+    cursor: pointer;
+  }
+
+  .on-sale-filter-count {
+    color: #888;
+    font-size: 12px;
+  }
+
+  .on-sale-price-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .on-sale-price-inputs input {
+    width: 100%;
+    min-width: 0;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+
+  .on-sale-apply {
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    border: 0;
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  /* PRODUCT AREA */
+
+  .on-sale-products {
+    min-width: 0;
+  }
+
+  .on-sale-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+
+  .on-sale-result-count {
+    font-size: 14px;
+    color: #666;
+  }
+
+  .on-sale-sort {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .on-sale-sort label {
+    font-size: 14px;
+  }
+
+  .on-sale-sort select {
+    min-width: 190px;
+    height: 42px;
+    padding: 0 35px 0 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 14px;
+  }
+
+  .on-sale-mobile-filter {
+    display: none;
+  }
+
+  /* PRODUCT GRID */
+
+  .on-sale-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 20px;
+  }
+
+  .on-sale-product-card {
+    position: relative;
+  }
+
+  .on-sale-product-image {
+    position: relative;
+    overflow: hidden;
+    background: #f7f7f7;
+    aspect-ratio: 1 / 1;
+  }
+
+  .on-sale-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .on-sale-product-info {
+    padding-top: 14px;
+  }
+
+  .on-sale-product-title {
+    margin: 0 0 7px;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .on-sale-product-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .on-sale-product-price {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 15px;
+  }
+
+  .on-sale-compare-price {
+    color: #888;
+    text-decoration: line-through;
+  }
+
+  .on-sale-sale-price {
+    font-weight: 600;
+  }
+
+  .on-sale-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 9px;
+    background: #111;
+    color: #fff;
+    font-size: 11px;
+    z-index: 2;
+  }
+
+  .on-sale-empty {
+    padding: 50px 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  /* PAGINATION */
+
+  .on-sale-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 45px;
+  }
+
+  .on-sale-pagination a,
+  .on-sale-pagination span {
+    min-width: 38px;
+    height: 38px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #111;
+    font-size: 14px;
+  }
+
+  .on-sale-pagination .current {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+  }
+
+  /* 1024px */
+
+  @media screen and (max-width: 1024px) {
+    .on-sale-content {
+      grid-template-columns: 210px 1fr;
+      gap: 25px;
+    }
+
+    .on-sale-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 25px 15px;
+    }
+
+    .on-sale-heading {
+      font-size: 34px;
+    }
+  }
+
+  /* 768px */
+
+  @media screen and (max-width: 768px) {
+    .on-sale-section {
+      padding-top: var(--on-sale-pt-mobile);
+      padding-bottom: var(--on-sale-pb-mobile);
+    }
+
+    .on-sale-wrapper {
+      padding: 0 15px;
+    }
+
+    .on-sale-content {
+      display: block;
+    }
+
+    .on-sale-filters {
+      display: none;
+      margin-bottom: 25px;
+    }
+
+    .on-sale-filters.is-open {
+      display: block;
+    }
+
+    .on-sale-mobile-filter {
+      display: block;
+      width: 100%;
+      height: 45px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .on-sale-toolbar {
+      margin-bottom: 20px;
+    }
+
+    .on-sale-sort {
+      width: 100%;
+    }
+
+    .on-sale-sort label {
+      display: none;
+    }
+
+    .on-sale-sort select {
+      width: 100%;
+    }
+
+    .on-sale-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 25px 12px;
+    }
+
+    .on-sale-heading {
+      font-size: 30px;
+    }
+  }
+
+  /* 375px */
+
+  @media screen and (max-width: 375px) {
+    .on-sale-heading {
+      font-size: 26px;
+    }
+
+    .on-sale-intro {
+      font-size: 14px;
+    }
+
+    .on-sale-grid {
+      gap: 20px 10px;
+    }
+
+    .on-sale-product-title {
+      font-size: 14px;
+    }
+
+    .on-sale-product-price {
+      font-size: 14px;
+    }
+  }
+</style>
+
+<section
+  class="on-sale-section"
+  style="
+    --on-sale-pt-desktop: {{ section.settings.padding_top }}px;
+    --on-sale-pb-desktop: {{ section.settings.padding_bottom }}px;
+    --on-sale-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --on-sale-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+  "
+>
+  <div class="on-sale-wrapper">
+
+    <!-- HEADER -->
+
+    <div class="on-sale-header">
+      <h1 class="on-sale-heading">
+        {{ section.settings.heading }}
+      </h1>
+
+      {% if section.settings.intro != blank %}
+        <div class="on-sale-intro">
+          {{ section.settings.intro }}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- MOBILE FILTER BUTTON -->
+
+    <button
+      type="button"
+      class="on-sale-mobile-filter"
+      id="OnSaleFilterButton-{{ section.id }}"
+    >
+      Filter Products
+    </button>
+
+    <div class="on-sale-content">
+
+      <!-- FILTERS -->
+
+      <aside
+        class="on-sale-filters"
+        id="OnSaleFilters-{{ section.id }}"
+      >
+
+        <form id="OnSaleFilterForm-{{ section.id }}">
+
+          {% for filter in collection.filters %}
+
+            {% assign filter_label = filter.label | downcase %}
+
+            {% unless filter_label contains 'availability' or filter_label contains 'price' or filter_label contains 'product type' or filter_label contains 'brand' or filter_label contains 'drive size' %}
+
+            {% else %}
+
+              <div class="on-sale-filter">
+
+                <button
+                  type="button"
+                  class="on-sale-filter-title"
+                  aria-expanded="true"
+                >
+                  <span>{{ filter.label }}</span>
+                  <span>−</span>
+                </button>
+
+                <div class="on-sale-filter-content">
+
+                  {% case filter.type %}
+
+                    {% when 'list' %}
+
+                      {% for value in filter.values %}
+
+                        <div class="on-sale-filter-option">
+
+                          <input
+                            type="checkbox"
+                            name="{{ value.param_name }}"
+                            value="{{ value.value }}"
+                            id="Filter-{{ section.id }}-{{ forloop.parentloop.index }}-{{ forloop.index }}"
+                            {% if value.active %}
+                              checked
+                            {% endif %}
+                            {% if value.count == 0 and value.active == false %}
+                              disabled
+                            {% endif %}
+                          >
+
+                          <label
+                            for="Filter-{{ section.id }}-{{ forloop.parentloop.index }}-{{ forloop.index }}"
+                          >
+                            {{ value.label }}
+
+                            {% if value.count > 0 %}
+                              <span class="on-sale-filter-count">
+                                ({{ value.count }})
+                              </span>
+                            {% endif %}
+                          </label>
+
+                        </div>
+
+                      {% endfor %}
+
+                    {% when 'price_range' %}
+
+                      <div class="on-sale-price-inputs">
+
+                        <input
+                          type="number"
+                          name="{{ filter.min_value.param_name }}"
+                          placeholder="Min"
+                          value="{{ filter.min_value.value | money_without_currency }}"
+                          min="0"
+                        >
+
+                        <input
+                          type="number"
+                          name="{{ filter.max_value.param_name }}"
+                          placeholder="Max"
+                          value="{{ filter.max_value.value | money_without_currency }}"
+                          min="0"
+                        >
+
+                      </div>
+
+                      <button
+                        type="submit"
+                        class="on-sale-apply"
+                      >
+                        Apply
+                      </button>
+
+                  {% endcase %}
+
+                </div>
+
+              </div>
+
+            {% endunless %}
+
+          {% endfor %}
+
+        </form>
+
+      </aside>
+
+      <!-- PRODUCTS -->
+
+      <div class="on-sale-products">
+
+        <div class="on-sale-toolbar">
+
+          <div class="on-sale-result-count">
+            {{ collection.products_count }}
+            {% if collection.products_count == 1 %}
+              product
+            {% else %}
+              products
+            {% endif %}
+          </div>
+
+          <div class="on-sale-sort">
+
+            <label for="OnSaleSort-{{ section.id }}">
+              Sort by
+            </label>
+
+            <select
+              id="OnSaleSort-{{ section.id }}"
+              name="sort_by"
+            >
+
+              {% for option in collection.sort_options %}
+
+                <option
+                  value="{{ option.value }}"
+                  {% if option.value == collection.sort_by %}
+                    selected
+                  {% endif %}
+                >
+                  {{ option.name }}
+                </option>
+
+              {% endfor %}
+
+            </select>
+
+          </div>
+
+        </div>
+
+        {% paginate collection.products by section.settings.products_per_page %}
+
+          {% if collection.products.size > 0 %}
+
+            <div class="on-sale-grid">
+
+              {% for product in collection.products %}
+
+                <article class="on-sale-product-card">
+
+                  <a
+                    href="{{ product.url }}"
+                    class="on-sale-product-image"
+                  >
+
+                    {% if product.compare_at_price > product.price %}
+                      <span class="on-sale-badge">
+                        Sale
+                      </span>
+                    {% endif %}
+
+                    {% if product.featured_image %}
+                      {{
+                        product.featured_image
+                        | image_url: width: 700
+                        | image_tag:
+                          loading: 'lazy',
+                          widths: '300, 400, 500, 700',
+                          sizes: '(min-width: 769px) 33vw, 50vw',
+                          alt: product.featured_image.alt | escape
+                      }}
+                    {% endif %}
+
+                  </a>
+
+                  <div class="on-sale-product-info">
+
+                    <h2 class="on-sale-product-title">
+                      <a href="{{ product.url }}">
+                        {{ product.title }}
+                      </a>
+                    </h2>
+
+                    <div class="on-sale-product-price">
+
+                      {% if product.compare_at_price > product.price %}
+
+                        <span class="on-sale-sale-price">
+                          {{ product.price | money }}
+                        </span>
+
+                        <span class="on-sale-compare-price">
+                          {{ product.compare_at_price | money }}
+                        </span>
+
+                      {% else %}
+
+                        <span>
+                          {{ product.price | money }}
+                        </span>
+
+                      {% endif %}
+
+                    </div>
+
+                  </div>
+
+                </article>
+
+              {% endfor %}
+
+            </div>
+
+            {% if paginate.pages > 1 %}
+
+              <div class="on-sale-pagination">
+
+                {{ paginate | default_pagination }}
+
+              </div>
+
+            {% endif %}
+
+          {% else %}
+
+            <div class="on-sale-empty">
+              <h2>No products found</h2>
+              <p>
+                Try removing some filters or changing your search.
+              </p>
+            </div>
+
+          {% endif %}
+
+        {% endpaginate %}
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    var section = document.querySelector(
+      '#OnSaleFilters-{{ section.id }}'
+    );
+
+    var filterButton = document.querySelector(
+      '#OnSaleFilterButton-{{ section.id }}'
+    );
+
+    var filterForm = document.querySelector(
+      '#OnSaleFilterForm-{{ section.id }}'
+    );
+
+    var sortSelect = document.querySelector(
+      '#OnSaleSort-{{ section.id }}'
+    );
+
+    if (!section) return;
+
+    /* Mobile filter */
+
+    if (filterButton) {
+      filterButton.addEventListener('click', function () {
+        section.classList.toggle('is-open');
+
+        if (section.classList.contains('is-open')) {
+          filterButton.textContent = 'Hide Filters';
+        } else {
+          filterButton.textContent = 'Filter Products';
+        }
+      });
+    }
+
+    /* Filter submit */
+
+    if (filterForm) {
+      var checkboxes = filterForm.querySelectorAll(
+        'input[type="checkbox"]'
+      );
+
+      checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+          filterForm.submit();
+        });
+      });
+    }
+
+    /* Sorting */
+
+    if (sortSelect) {
+      sortSelect.addEventListener('change', function () {
+
+        var url = new URL(window.location.href);
+
+        url.searchParams.set(
+          'sort_by',
+          this.value
+        );
+
+        window.location.href = url.toString();
+
+      });
+    }
+
+    /* Filter accordion */
+
+    var filterTitles = section.querySelectorAll(
+      '.on-sale-filter-title'
+    );
+
+    filterTitles.forEach(function (title) {
+
+      title.addEventListener('click', function () {
+
+        var content = this.nextElementSibling;
+        var icon = this.querySelector('span:last-child');
+
+        if (!content) return;
+
+        if (content.style.display === 'none') {
+
+          content.style.display = 'block';
+          this.setAttribute('aria-expanded', 'true');
+
+          if (icon) {
+            icon.textContent = '−';
+          }
+
+        } else {
+
+          content.style.display = 'none';
+          this.setAttribute('aria-expanded', 'false');
+
+          if (icon) {
+            icon.textContent = '+';
+          }
+
+        }
+
+      });
+
+    });
+
+  });
+</script>
+
+{% schema %}
+{
+  "name": "On Sale Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "On Sale"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro",
+      "default": "<p>Browse discounted tools and equipment available now.</p>"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 6,
+      "max": 48,
+      "step": 3,
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 50,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 50,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 35,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 35,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "On Sale Products"
+    }
+  ]
+}
+{% endschema %}

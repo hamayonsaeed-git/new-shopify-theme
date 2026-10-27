@@ -1,0 +1,350 @@
+<div class="mekhala-page-width">
+  <!-- Header -->
+  <div class="versatility-header">
+    {% if section.settings.label != blank %}
+      <p class="versatility-label">{{ section.settings.label }}</p>
+    {% endif %}
+    {% if section.settings.heading != blank %}
+      <h2 class="versatility-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
+      <p class="versatility-subheading">{{ section.settings.subheading }}</p>
+    {% endif %}
+  </div>
+
+  <!-- Cards Grid -->
+  <div class="versatility-grid">
+    {% for block in section.blocks %}
+      <div class="versatility-card" {{ block.shopify_attributes }}>
+        {% if block.settings.image != blank %}
+          <div class="versatility-card-icon">
+            <img
+              src="{{ block.settings.image | img_url: '80x80', crop: 'center' }}"
+              alt="{{ block.settings.title }}"
+              width="36"
+              height="36"
+              loading="lazy"
+            >
+          </div>
+        {% endif %}
+        {% if block.settings.title != blank %}
+          <h3 class="versatility-card-title">{{ block.settings.title }}</h3>
+        {% endif %}
+        {% if block.settings.body != blank %}
+          <p class="versatility-card-body">{{ block.settings.body }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+   .versatility-section {
+     background-color: #F5F5F2;
+     padding-top:50px;
+     padding-bottom:40px;
+
+   }
+  .mekhala-page-width {
+     max-width: 1116px;
+     margin: auto;
+  }
+
+   .versatility-header {
+     margin-bottom: 20px;
+   }
+
+   .versatility-label {
+     font-weight: bolder;
+     margin: 0 0 10px;
+     font-size: 12px;
+     letter-spacing: .7488px;
+     text-transform: uppercase;
+     color: #ed1a3b;
+     font-family: Lucida Sans, Lucida Grande, Lucida Sans Unicode, Helvetica, Arial, sans-serif;
+   }
+
+   .versatility-heading {
+     margin: 0;
+     font-size: 35px;
+     line-height: 1.42857143;
+     font-weight: bold;
+     font-family: "Brandon Grotesque";
+     color: #231f20;
+     padding-bottom: 20px;
+   }
+
+   .versatility-subheading {
+     font-weight: 400;
+     margin: 0;
+     line-height: 1.6;
+     font-size: 15.52px;
+     color: #666;
+     font-family: "Lucida";
+   }
+
+   .versatility-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+     gap: 18px;
+   }
+
+   .versatility-card {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     background: #fff;
+     border: 1px solid #fff;
+     border-radius: 18px;
+     padding: 21.6px;
+     text-align: center;
+   }
+
+   .versatility-card-icon {
+     width: 36px;
+     height: 36px;
+     margin-bottom: 10.8px;
+     flex-shrink: 0;
+   }
+
+   .versatility-card-icon img {
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
+     display: block;
+   }
+
+   .versatility-card-title {
+     font-family: 'Brandon Grotesque';
+     font-size: 33.9992px;
+     font-weight: 600;
+     color: #231F20;
+     margin: 0 0 5.4px;
+     line-height: 1.428em;
+   }
+
+   .versatility-card-body {
+     font-family: "lucida";
+     font-size: 14.76px;
+     font-weight: 400;
+     color: #260C11;
+     margin: 0;
+     line-height: 1.5;
+   }
+
+   @media (max-width: 1300px) {
+     .versatility-grid {
+       grid-template-columns: repeat(4, 1fr);
+     }
+     .mekhala-page-width {
+      max-width: 1054px;
+
+     }
+   }
+
+   @media (max-width: 1024px) {
+     .versatility-grid {
+       grid-template-columns: repeat(3, 1fr);
+     }
+     .versatility-heading {
+       font-size: 26px;
+     }
+     .mekhala-page-width {
+      max-width: 836px;
+
+     }
+     .versatility-label{
+      margin:0;
+     }
+     .versatility-card{
+      padding:16px;
+      border-radius: 13px;
+     }
+     .versatility-card-icon {
+     width: 26px;
+     height: 26px;
+     margin-bottom: 8px;
+
+    }
+    .versatility-card-title{
+
+     font-size: 26px;
+
+   }
+   .versatility-card-body{
+
+    font-size: 11px;
+   }
+   }
+
+   @media (max-width: 768px) {
+
+     .versatility-grid {
+       grid-template-columns: repeat(2, 1fr);
+     
+     }
+     .mekhala-page-width {
+      max-width: 627px;
+
+     }
+     .versatility-heading {
+       font-size: 18px;
+     }
+     .versatility-card {
+       padding: 12px;
+       border-radius: 10px;
+     }
+     .versatility-card-title {
+       font-size: 18px;
+       line-height: 1.2;
+     }
+     .versatility-card-body {
+       font-size: 8px;
+     }
+     p.versatility-label {
+     font-size: 12px;
+     letter-spacing: .7488px;
+     text-transform: uppercase;
+     margin: 0;
+     }
+     .versatility-subheading{
+     line-height:normal;
+     }
+     .versatility-card-icon {
+         width: 20px;
+         height: 20px;
+         margin-bottom: 6px;
+     }
+   }
+
+   @media (max-width: 426px) {
+     .versatility-grid {
+       grid-template-columns: 1fr;
+     }
+     .mekhala-page-width {
+
+     }
+     .versatility-card-icon {
+         width: 26px;
+         height: 26px;
+         margin-bottom: 6px;
+     }
+     .versatility-card-title {
+         font-size: 25px;
+
+     }
+     .versatility-card-body {
+         font-size: 11px;
+     }
+     .versatility-heading {
+         font-size: 25px;
+     }
+   }
+    @media (max-width: 600px) {
+
+     .mekhala-page-width {
+         padding:0 15px;
+     }
+   }
+</style>
+
+{% schema %}
+{
+  "name": "Versatility Cards",
+  "class": "versatility-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label (small uppercase)",
+      "default": "VERSATILITY"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Not just for curry"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Mekhala Red Curry Paste is a flavour catalyst. Here are six ways to use it beyond the classic curry — each one weeknight-easy."
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Use Case Card",
+      "type": "use_case",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "Classic Thai Curry"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Card Body",
+          "default": "Sauté with coconut cream, add protein and veg, simmer with coconut milk. Ready in 20 minutes."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Versatility Cards",
+      "blocks": [
+        {
+          "type": "use_case",
+          "settings": {
+            "title": "Classic Thai Curry",
+            "body": "Sauté with coconut cream, add protein and veg, simmer with coconut milk. Ready in 20 minutes."
+          }
+        },
+        {
+          "type": "use_case",
+          "settings": {
+            "title": "Marinade",
+            "body": "Mix 2 tbsp paste with olive oil and a squeeze of lime. Marinate chicken, tofu, or fish for 30 mins before grilling or roasting."
+          }
+        },
+        {
+          "type": "use_case",
+          "settings": {
+            "title": "Noodle Soup",
+            "body": "Stir 1 tbsp into hot vegetable broth with rice noodles, spinach, and a soft-boiled egg for an instant Thai-inspired soup."
+          }
+        },
+        {
+          "type": "use_case",
+          "settings": {
+            "title": "Salad Dressing",
+            "body": "Whisk ½ tbsp with lime juice, sesame oil, and a touch of coconut cream for a bold Asian-inspired salad dressing."
+          }
+        },
+        {
+          "type": "use_case",
+          "settings": {
+            "title": "Roasted Veg",
+            "body": "Toss cauliflower, sweet potato, or chickpeas in paste mixed with coconut oil. Roast at 200°C for a deeply flavoured side dish."
+          }
+        },
+        {
+          "type": "use_case",
+          "settings": {
+            "title": "Stir-Fry",
+            "body": "Add to a hot wok with oil and your choice of protein and vegetables. A 15-minute weeknight stir-fry with restaurant depth."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

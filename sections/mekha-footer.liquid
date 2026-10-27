@@ -1,0 +1,264 @@
+<div class="custom-footer">
+  <div class="custom-page-width">
+
+    <div class="footer-wrapper">
+
+      <!-- Logo -->
+      <div class="footer-logo-wrapper">
+        {% if section.settings.logo != blank %}
+          <img
+            src="{{ section.settings.logo | image_url: width: 400 }}"
+            alt="Footer Logo"
+            loading="lazy"
+          >
+        {% endif %}
+      </div>
+
+      <!-- GRID -->
+      <div class="footer-content">
+
+        {% for block in section.blocks %}
+
+          <!-- MENU COLUMN -->
+          {% if block.type == "menu_column" %}
+            <div class="footer-column" {{ block.shopify_attributes }}>
+
+              {% if block.settings.menu != blank %}
+                <ul class="footer-menu">
+                  {% for link in block.settings.menu.links %}
+                    <li>
+                      <a href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+   <div class="footer-column footer-extra" {{ block.shopify_attributes }}>
+
+              <div class="footer-social">
+
+                {% if block.settings.instagram_icon != blank %}
+                  <a href="{{ block.settings.instagram_link | default: '#' }}">
+                    <img
+                      src="{{ block.settings.instagram_icon | image_url }}"
+                      alt="Instagram"
+                      loading="lazy"
+                    >
+                  </a>
+                {% endif %}
+
+                {% if block.settings.facebook_icon != blank %}
+                  <a href="{{ block.settings.facebook_link | default: '#' }}">
+                    <img
+                      src="{{ block.settings.facebook_icon | image_url }}"
+                      alt="Facebook"
+                      loading="lazy"
+                    >
+                  </a>
+                {% endif %}
+
+              </div>
+
+              {% if block.settings.badge_image != blank %}
+                <div class="footer-badge">
+                  <img
+                    src="{{ block.settings.badge_image | image_url }}"
+                    alt="Badge"
+                    loading="lazy"
+                  >
+                </div>
+              {% endif %}
+
+            </div>
+            </div>
+          {% endif %}
+
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+    {% if section.settings.image != blank %}
+    <img src="{{ section.settings.image | image_url: width: 1200 }}" class="footer-top-mobile-image" alt="Image">
+  {% endif %}
+  </div>
+</div>
+
+<style>
+
+.custom-footer{
+  padding:55px 0 45px;
+
+  background-image: url({{ section.settings.footer_bg | image_url }});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.footer-top-mobile-image{
+  display:none;
+}
+
+/* LOGO */
+.footer-logo-wrapper{
+  margin-bottom:50px;
+}
+
+.footer-logo-wrapper img{
+  max-width:250px;
+  display:block;
+ padding-left: 10px;
+}
+
+/* GRID */
+.footer-content{
+  display:grid;
+  grid-template-columns:repeat(5, 1fr);
+  
+}
+
+/* MENU */
+.footer-menu{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.footer-menu li{
+  margin-bottom:18px;
+}
+
+.footer-menu a{
+  text-decoration:none;
+ font-family: 'lucida';
+font-size: 16px;
+font-weight: 400;
+line-height: 20px;
+color: rgba(35, 31, 32, 0.85);
+}
+
+/* EXTRA COLUMN */
+.footer-social{
+  display:flex;
+  margin-bottom:20px;
+}
+
+.footer-social a img{
+  width:30px;
+  height:30px;
+  object-fit:contain;
+}
+
+.footer-badge img{
+  max-width:200px;
+  display:block;
+}
+
+/* MOBILE */
+@media (max-width:1024px){
+  .footer-content{
+    grid-template-columns:repeat(3, 1fr);
+  }
+  .footer-top-mobile-image{
+   display:block;
+   width: 100%;
+  }
+  .footer-badge img{
+   display: none;
+  }
+}
+
+@media (max-width:768px){
+  .footer-content{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .footer-logo-wrapper img{
+   width: 100%;
+  }
+  .footer-top-mobile-image{
+   display:none;
+  }
+  .footer-badge img{
+   display: block;
+  max-width: 100%;
+  }
+  .footer-menu a{
+    font-size:14px;
+  }
+}
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Footer",
+
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Footer Logo"
+    },
+    {
+  "type": "image_picker",
+  "id": "footer_bg",
+  "label": "Footer Background Image"
+   },
+   {
+      "type": "image_picker",
+      "id": "image",
+      "label": "mobile image"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "menu_column",
+      "name": "Menu Column",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        },
+        {
+          "type": "url",
+          "id": "instagram_link",
+          "label": "Instagram Link"
+        },
+        {
+          "type": "url",
+          "id": "facebook_link",
+          "label": "Facebook Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "instagram_icon",
+          "label": "Instagram Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "facebook_icon",
+          "label": "Facebook Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "badge_image",
+          "label": "Badge Image"
+        }
+      ]
+    },
+  ],
+
+  "presets": [
+    {
+      "name": "Custom Footer",
+      "blocks": [
+        { "type": "menu_column" },
+        { "type": "menu_column" },
+        { "type": "menu_column" },
+      ]
+    }
+  ]
+}
+{% endschema %}
